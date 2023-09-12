@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\AttendeeController;
+use App\Http\Controllers\DateController;
 use App\Http\Controllers\EventDayController;
+use App\Http\Controllers\MovieController;
+use App\Http\Controllers\ShowTimeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,7 +21,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
-
 
 
 Route::get('resister', [AttendeeController::class, 'create'])->name('resister');
@@ -38,5 +40,55 @@ Route::group(
         Route::get('/{event_day}/edit', 'edit')->name('edit');
         Route::put('/{event_day}', 'update')->name('update');
         Route::delete('/{event_day}', 'destroy')->name('destroy');
+    }
+);
+
+Route::group(
+    [
+        'prefix' => 'movies',
+        'as' => 'movies.',
+        'controller' => MovieController::class
+    ],
+    function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{movie}/edit', 'edit')->name('edit');
+        Route::put('/{movie}', 'update')->name('update');
+        Route::delete('/{movie}', 'destroy')->name('destroy');
+    }
+);
+
+
+Route::group(
+    [
+        'prefix' => 'dates',
+        'as' => 'dates.',
+        'controller' => DateController::class
+    ],
+    function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{date}/edit', 'edit')->name('edit');
+        Route::put('/{date}', 'update')->name('update');
+        Route::delete('/{date}', 'destroy')->name('destroy');
+    }
+);
+
+
+ Route::group(
+    [
+        'prefix' => 'showTimes',
+        'as' => 'showTimes.',
+        'controller' => ShowTimeController::class
+    ],
+    function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{showTime}/edit', 'edit')->name('edit');
+        Route::put('/{showTime}', 'update')->name('update');
+        Route::delete('/{showTime}', 'destroy')->name('destroy');
     }
 );
