@@ -14,11 +14,11 @@ class Attendee extends Model
         'name',
         'email',
         'phone',
-        'event_id',
+        'event_day_id',
     ];
 
     public function eventDay()
     {
-        return $this->belongsTo(EventDay::class);
+        return $this->belongsTo(EventDay::class, 'event_day_id', 'id');
     }
 }

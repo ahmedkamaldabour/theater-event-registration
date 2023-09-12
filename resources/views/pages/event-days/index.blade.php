@@ -9,14 +9,7 @@
         </div>
     </div>
 
-    @if(session()->has('success'))
-        <div class="row">
-            <div class="col-md-12">
-                <div class="alert alert-success">{{session()->get('success')}}</div>
-            </div>
-        </div>
-    @endif
-
+    @include('partials.flash_messages')
 
     <div class="row">
         <div class="col-md-12">

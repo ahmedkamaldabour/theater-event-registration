@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttendeeController;
 use App\Http\Controllers\EventDayController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
+
+
+
+Route::get('resister', [AttendeeController::class, 'create'])->name('resister');
+Route::post('resister', [AttendeeController::class, 'store'])->name('resister.store');
 
 
 Route::group(
