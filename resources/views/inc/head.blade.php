@@ -21,4 +21,5 @@
     <link href="{{asset('AdminAssets')}}/src/assets/css/dark/dashboard/dash_1.css" rel="stylesheet" type="text/css" />
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
 
+    @stack('css')
 </head>

@@ -20,15 +20,12 @@ class ShowTime extends Model
     {
         return $this->hasMany(EventDay::class);
     }
-
     // accessor for start_time attribute to return time in 12-hour format with AM/PM
     public function getStartTimeAttribute($value)
     {
         return date('g:i A', strtotime($value));
     }
-
     // accessor for end_time attribute to return time in 12-hour format with AM/PM
-
     public function getEndTimeAttribute($value)
     {
         return date('g:i A', strtotime($value));

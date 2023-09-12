@@ -18,7 +18,10 @@ class AttendeeController extends Controller
 
     public function store(StoreAttendeeRequest $request)
     {
-        Attendee::create($request->validated());
+        $attendee = Attendee::where('email', $request->email)->where('event_day_id', $request->event_day_id)->first();
+        if ($attendee && ($attendee->created_at->addDays(7) > now())) {
+            return redirect()->route('resister')->with('error', 'You have already registered for this event!');
+        }
         return redirect()->route('resister')->with('success', 'Resister success!');
     }
 }
