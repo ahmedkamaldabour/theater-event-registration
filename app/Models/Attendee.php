@@ -40,3 +40,5 @@ class Attendee extends Model
         return $this->hasManyThrough(ShowTime::class, EventDay::class, 'id', 'id', 'event_day_id', 'show_time_id');
     }
 }
+
+

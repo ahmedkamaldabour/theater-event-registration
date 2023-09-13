@@ -25,7 +25,7 @@ Route::get('/', function () {
 Route::get('showtime-free-date/{date}', [ShowTimeController::class, 'freeShowTimeForSelectedData'])
     ->name('freeShowTimeForSelectedDate');
 
-Route::get('showtime-date/{date}', [ShowTimeController::class, 'showTimeForSelectedDate'])
+Route::get('showtime-date/{date}/{movie}', [ShowTimeController::class, 'showTimeForSelectedDate'])
     ->name('showTimeForSelectedDate');
 
 Route::get('movie-date/{movie}', [DateController::class, 'dateForSelectedMovie'])

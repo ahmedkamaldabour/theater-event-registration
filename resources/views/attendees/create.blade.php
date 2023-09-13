@@ -108,14 +108,19 @@
 
         $('#date').on('change', function () {
             var date_id = this.value;
+            var movie_id = $('#movie').val();
             $("#showtime").html('');
-            $url = '{{route('showTimeForSelectedDate', ':date_id')}}';
+            $url = '{{route('showTimeForSelectedDate', [':date_id', ':movie_id']) }}';
+            $url = $url.replace(':date_id', date_id);
+            $url = $url.replace(':movie_id', movie_id);
+            console.log($url);
             $.ajax({
-                url: $url.replace(':date_id', date_id),
+                url: $url,
                 type: "get",
-                data: {
-                    date_id: date_id,
-                },
+                // data: {
+                //     date_id: date_id,
+                //     movie_id: movie_id,
+                // },
                 dataType: 'json',
                 success: function (result) {
                     $('#showtime').removeAttr('hidden');
