@@ -21,12 +21,21 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
-
-
-Route::get('resister', [AttendeeController::class, 'create'])->name('resister');
-Route::post('resister', [AttendeeController::class, 'store'])->name('resister.store');
-
-
+Route::group(
+    [
+        'prefix' => 'resister',
+        'as' => 'resister.',
+        'controller' => AttendeeController::class
+    ],
+    function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{attendee}/edit', 'edit')->name('edit');
+        Route::put('/{attendee}', 'update')->name('update');
+        Route::delete('/{attendee}', 'destroy')->name('destroy');
+    }
+);
 Route::group(
     [
         'prefix' => 'event-days',
@@ -42,7 +51,6 @@ Route::group(
         Route::delete('/{event_day}', 'destroy')->name('destroy');
     }
 );
-
 Route::group(
     [
         'prefix' => 'movies',
@@ -58,8 +66,6 @@ Route::group(
         Route::delete('/{movie}', 'destroy')->name('destroy');
     }
 );
-
-
 Route::group(
     [
         'prefix' => 'dates',
@@ -75,8 +81,6 @@ Route::group(
         Route::delete('/{date}', 'destroy')->name('destroy');
     }
 );
-
-
  Route::group(
     [
         'prefix' => 'showTimes',
