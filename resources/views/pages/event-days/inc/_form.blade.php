@@ -14,7 +14,7 @@
 </div>
 <div class="form-group">
     <label for="date_id">Date</label>
-    <select name="date_id" id="date_id" class="form-control">
+    <select name="date_id" id="date" class="form-control">
         <option value="">Select Date</option>
         @foreach($dates as $date)
             <option
@@ -37,3 +37,6 @@
     </select>
 </div>
 <button type="submit" class="btn btn-primary mt-2">{{$button}}</button>
+
+
+

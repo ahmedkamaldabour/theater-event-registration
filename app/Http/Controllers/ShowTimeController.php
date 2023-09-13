@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ShowTime\ShowTimeRequest;
+use App\Models\Date;
 use App\Models\ShowTime;
 use App\Rules\ValShowTimes;
 use Illuminate\Http\Request;
@@ -45,6 +46,13 @@ class ShowTimeController extends Controller
         $showTime->delete();
         return redirect()->route('showTimes.index')
             ->with('success', 'Show Time deleted successfully');
+    }
+
+
+    public function showTimeForSelectedData(Date $date)
+    {
+        $show_times = ShowTime::whereNotIn('id', $date->eventDays->pluck('show_time_id'))->get();
+        return response()->json($show_times);
     }
 
 

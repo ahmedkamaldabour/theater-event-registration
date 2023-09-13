@@ -21,6 +21,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
+
+Route::get('showtime-data/{date}', [ShowTimeController::class, 'showTimeForSelectedData'])
+    ->name('showTimeForSelectedData');
+
 Route::group(
     [
         'prefix' => 'resister',

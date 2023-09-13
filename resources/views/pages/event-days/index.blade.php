@@ -12,7 +12,7 @@
     @include('partials.flash_messages')
 
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 pb-2">
             <a href="{{route('event-days.create')}}" class="btn btn-primary">Add New Event Day</a>
         </div>
     </div>

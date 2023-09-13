@@ -19,19 +19,7 @@
     </div>
 
 
-    @if($errors->any())
-        <div class="row">
-            <div class="col-md-12">
-                <div class="alert alert-danger">
-                    <ul class="mb-0">
-                        @foreach($errors->all() as $error)
-                            <li>{{$error}}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            </div>
-        </div>
-    @endif
+    @include('partials.flash_messages')
 
     <form action="{{route('event-days.update', $event_day->id)}}" method="post">
         @method('PUT')
@@ -39,3 +27,38 @@
     </form>
 
 @endsection
+
+
+
+@push('js')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#date').change(function () {
+                var date_id = $(this).val();
+                $url = '{{route('showTimeForSelectedData', ':date_id')}}';
+                $.ajax({
+                    url: $url.replace(':date_id', date_id),
+                    method: 'GET',
+                    data: {
+                        date_id: date_id
+                    },
+                    success: function (data) {
+                        // Clear the current options
+                        $('#show_time_id').empty();
+
+                        // Append The new data to $showtimes variable in the view page (inc._form.blade.php)
+                        $.each(data, function (index, showtime) {
+                            console.log(showtime);
+                            $('#show_time_id')
+                                .append('<option' +
+                                    ' value="' + showtime.id + '">' + showtime.start_time + ' - ' + showtime.end_time +
+                                    '</option>');
+                        });
+                    }
+                });
+
+            });
+        });
+    </script>
+@endpush
