@@ -22,6 +22,7 @@ class AttendeeController extends Controller
         if ($attendee && ($attendee->created_at->addDays(7) > now())) {
             return redirect()->route('resister')->with('error', 'You have already registered for this event!');
         }
+        Attendee::create($request->validated());
         return redirect()->route('resister')->with('success', 'Resister success!');
     }
 }

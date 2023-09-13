@@ -17,7 +17,8 @@ class DateFactory extends Factory
     public function definition(): array
     {
         return [
-            'date' => $this->faker->date()
+            // fake data after now
+            'date' => $this->faker->dateTimeBetween('now', '+1 years')->format('Y-m-d'),
         ];
     }
 }
