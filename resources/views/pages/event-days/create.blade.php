@@ -25,7 +25,7 @@
         $(document).ready(function () {
             $('#date').change(function () {
                 var date_id = $(this).val();
-                $url = '{{route('showTimeForSelectedData', ':date_id')}}';
+                $url = '{{route('freeShowTimeForSelectedDate', ':date_id')}}';
                 $.ajax({
                     url: $url.replace(':date_id', date_id),
                     method: 'GET',
@@ -33,12 +33,8 @@
                         date_id: date_id
                     },
                     success: function (data) {
-                        // Clear the current options
                         $('#show_time_id').empty();
-
-                        // Append The new data to $showtimes variable in the view page (inc._form.blade.php)
                         $.each(data, function (index, showtime) {
-                            console.log(showtime);
                             $('#show_time_id')
                                 .append('<option' +
                                     ' value="' + showtime.id + '">' + showtime.start_time + ' - ' + showtime.end_time +

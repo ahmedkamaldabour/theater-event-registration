@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Date;
+use App\Models\Movie;
 use Illuminate\Http\Request;
 
 class DateController extends Controller
@@ -50,6 +51,14 @@ class DateController extends Controller
     {
         $date->delete();
         return redirect()->route('dates.index')->with('success', 'Date deleted successfully');
+    }
+
+    public function dateForSelectedMovie(Movie $movie)
+    {
+        $dates = Date::whereHas('eventDays', function ($query) use ($movie) {
+            $query->where('movie_id', $movie->id);
+        })->get();
+        return response()->json($dates);
     }
 
 

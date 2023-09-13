@@ -7,6 +7,7 @@ use App\Models\Date;
 use App\Models\ShowTime;
 use App\Rules\ValShowTimes;
 use Illuminate\Http\Request;
+use function response;
 
 class ShowTimeController extends Controller
 {
@@ -49,9 +50,15 @@ class ShowTimeController extends Controller
     }
 
 
-    public function showTimeForSelectedData(Date $date)
+    public function freeShowTimeForSelectedData(Date $date)
     {
         $show_times = ShowTime::whereNotIn('id', $date->eventDays->pluck('show_time_id'))->get();
+        return response()->json($show_times);
+    }
+
+    public function showTimeForSelectedDate(Date $date)
+    {
+        $show_times = ShowTime::whereIn('id', $date->eventDays->pluck('show_time_id'))->get();
         return response()->json($show_times);
     }
 

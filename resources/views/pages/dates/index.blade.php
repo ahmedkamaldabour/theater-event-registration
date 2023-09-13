@@ -32,7 +32,6 @@
                 <tr>
                     <th scope="row">{{$date->id}}</th>
                     <td>{{$date->date}}</td>
-                    <td>{{$date->description}}</td>
                     <td>
                         <a href="{{route('dates.edit', $date->id)}}" class="btn btn-primary">Edit</a>
                         <form action="{{route('dates.destroy', $date->id)}}" method="post" class="d-inline-block">

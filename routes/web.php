@@ -22,8 +22,16 @@ Route::get('/', function () {
     return view('index');
 });
 
-Route::get('showtime-data/{date}', [ShowTimeController::class, 'showTimeForSelectedData'])
-    ->name('showTimeForSelectedData');
+Route::get('showtime-free-date/{date}', [ShowTimeController::class, 'freeShowTimeForSelectedData'])
+    ->name('freeShowTimeForSelectedDate');
+
+Route::get('showtime-date/{date}', [ShowTimeController::class, 'showTimeForSelectedDate'])
+    ->name('showTimeForSelectedDate');
+
+Route::get('movie-date/{movie}', [DateController::class, 'dateForSelectedMovie'])
+    ->name('dateForSelectedMovie');
+
+
 
 Route::group(
     [
