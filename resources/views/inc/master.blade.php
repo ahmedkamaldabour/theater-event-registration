@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 @include('inc.head')
-<body class="layout-boxed enable-secondaryNav">
+<body class="layout-boxed enable-secondaryNav dark">
 <!-- BEGIN LOADER -->
 <div id="load_screen">
     <div class="loader">
