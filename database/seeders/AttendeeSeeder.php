@@ -13,6 +13,5 @@ class AttendeeSeeder extends Seeder
     public function run(): void
     {
 
-
     }
 }

@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->string('name');
             $table->string('email');
             $table->string('phone');
-            $table->foreignId('event_date_id')->constrained('event_days');
+            $table->foreignId('event_date_id')->constrained('event_days')->onDelete('cascade');
             $table->timestamps();
         });
     }

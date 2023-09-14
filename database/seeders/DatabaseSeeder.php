@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,11 +19,18 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-
+        User::create([
+            'name' => 'Admin',
+            'email' => 'admin@admin.com',
+            'password' => bcrypt('123456'),
+        ]);
 
         $this->call([
             ShowTimeSeeder::class,
-            EventDaySeeder::class,
+//            MovieSeeder::class,
+            DateSeeder::class,
+//            EventDaySeeder::class,
+//            AttendeeSeeder::class,
         ]);
     }
 }

@@ -12,9 +12,9 @@ return new class extends Migration {
     {
         Schema::create('event_days', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('movie_id')->constrained('movies');
-            $table->foreignId('show_time_id')->constrained('show_times');
-            $table->foreignId('date_id')->constrained('dates');
+            $table->foreignId('movie_id')->constrained('movies')->onDelete('cascade');
+            $table->foreignId('show_time_id')->constrained('show_times')->onDelete('cascade');
+            $table->foreignId('date_id')->constrained('dates')->onDelete('cascade');
             $table->unique(['movie_id', 'show_time_id', 'date_id']);
             $table->timestamps();
         });

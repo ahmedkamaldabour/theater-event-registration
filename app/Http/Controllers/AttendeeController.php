@@ -30,6 +30,10 @@ class AttendeeController extends Controller
         $this->checkUserResisterBeforeSevenDays($request->email, $request->event_day_id);
         // Check StoreAttendeeRequest Logic
         Attendee::create($request->validated());
+        if (!auth()->user())
+        {
+            return redirect()->back()->with('success', 'Resister success!');
+        }
         return redirect()->route('resister.index')->with('success', 'Resister success!');
     }
     public function edit(Attendee $attendee)
